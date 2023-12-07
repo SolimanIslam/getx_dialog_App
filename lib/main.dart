@@ -103,6 +103,29 @@ class MyApp extends StatelessWidget {
                       ));
                 },
                 child: const Text("Widgets dialog")),
+            const SizedBox(
+              height: 15,
+            ),
+            MaterialButton(
+                color: Colors.red,
+                textColor: Colors.white,
+                onPressed: () {
+                  Get.snackbar("default Title", "Default Message");
+                },
+                child: const Text("Default Snackbar")),
+            const SizedBox(
+              height: 15,
+            ),
+            MaterialButton(
+                color: Colors.red,
+                textColor: Colors.white,
+                onPressed: () {
+                  Get.snackbar("default Title", "Default Message",
+                      duration: Duration(seconds: 5),
+                      titleText: Text("SnackBar Title"),
+                      messageText: Text("SnackBar Message"));
+                },
+                child: const Text("Customized Snackbar")),
           ],
         ),
       ),
