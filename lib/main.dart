@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'themes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,6 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
         title: const Text("GetX Dialog"),
       ),
       body: Center(
@@ -120,12 +120,55 @@ class MyApp extends StatelessWidget {
                 color: Colors.red,
                 textColor: Colors.white,
                 onPressed: () {
-                  Get.snackbar("default Title", "Default Message",
-                      duration: Duration(seconds: 5),
-                      titleText: Text("SnackBar Title"),
-                      messageText: Text("SnackBar Message"));
+                  Get.snackbar(
+                    "default Title", "Default Message",
+                    duration: Duration(seconds: 5),
+                    titleText: Text("SnackBar Title"),
+                    //Overwrites the default title
+                    messageText: Text("SnackBar Message"),
+                    //Overwrites the default title
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
                 },
                 child: const Text("Customized Snackbar")),
+            const SizedBox(
+              height: 15,
+            ),
+            MaterialButton(
+                color: Colors.red,
+                textColor: Colors.white,
+                onPressed: () {
+                  Get.bottomSheet(
+                    Container(
+                      height: 200,
+                      padding: const EdgeInsets.all(50),
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade100,
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20))),
+                      child: const Text("Bottom Sheet"),
+                    ),
+                    enterBottomSheetDuration: const Duration(seconds: 1),
+                    exitBottomSheetDuration: const Duration(seconds: 1),
+                    isDismissible: true,
+                  );
+                },
+                child: const Text("Bottom Sheet")),
+            const SizedBox(
+              height: 15,
+            ),
+            MaterialButton(
+                color: Colors.red,
+                textColor: Colors.white,
+                onPressed: () {
+                  if (Get.isDarkMode) {
+                    Get.changeTheme(Themes.customTheme1);
+                  } else {
+                    Get.changeTheme(Themes.customTheme2);
+                  }
+                },
+                child: const Text("Toggle the Theme")),
           ],
         ),
       ),
